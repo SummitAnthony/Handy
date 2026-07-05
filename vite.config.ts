@@ -1,13 +1,31 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "path";
 
 const host = process.env.TAURI_DEV_HOST;
 
+// Dev-server only: load the Tauri IPC mock (src/dev/mock-tauri.ts) before each
+// entry's module graph so the UI runs in a plain browser. The module no-ops
+// inside the real app, and the plugin never runs for production builds.
+const devBrowserMock = (): Plugin => ({
+  name: "dev-browser-mock",
+  apply: "serve",
+  transformIndexHtml: {
+    order: "pre",
+    handler: () => [
+      {
+        tag: "script",
+        attrs: { type: "module", src: "/src/dev/mock-tauri.ts" },
+        injectTo: "head-prepend",
+      },
+    ],
+  },
+});
+
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), devBrowserMock()],
 
   // Path aliases
   resolve: {

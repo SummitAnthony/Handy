@@ -17,6 +17,11 @@
     "debug": "Debug",
     "about": "About"
   },
+  "theme": {
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
   "onboarding": {
     "subtitle": "To get started, choose a transcription model",
     "existingModelsTitle": "Compatible Models",

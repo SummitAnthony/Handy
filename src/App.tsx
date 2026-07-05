@@ -13,6 +13,7 @@ import AccessibilityPermissions from "./components/AccessibilityPermissions";
 import Footer from "./components/footer";
 import Onboarding, { AccessibilityOnboarding } from "./components/onboarding";
 import { Sidebar, SidebarSection, SECTIONS_CONFIG } from "./components/Sidebar";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { WhatsNewGate } from "./components/whats-new";
 import { useSettings } from "./hooks/useSettings";
 import { useSettingsStore } from "./stores/settingsStore";
@@ -273,7 +274,7 @@ function App() {
           unstyled: true,
           classNames: {
             toast:
-              "bg-background border border-mid-gray/20 rounded-lg shadow-lg px-4 py-3 flex items-center gap-3 text-sm",
+              "glass-menu rounded-xl px-4 py-3 flex items-center gap-3 text-sm",
             title: "font-medium",
             description: "text-mid-gray",
           },
@@ -288,8 +289,11 @@ function App() {
         />
         {/* Scrollable content area */}
         <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex justify-end px-4 pt-3">
+            <ThemeToggle />
+          </div>
           <div className="flex-1 overflow-y-auto">
-            <div className="flex flex-col items-center p-4 gap-4">
+            <div className="flex flex-col items-center px-6 py-5 gap-4">
               <AccessibilityPermissions />
               {renderSettingsContent(currentSection)}
             </div>

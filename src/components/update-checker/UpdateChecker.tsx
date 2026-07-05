@@ -5,6 +5,7 @@ import { relaunch } from "@tauri-apps/plugin-process";
 import { listen } from "@tauri-apps/api/event";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { ProgressBar } from "../shared";
+import { Button } from "../ui/Button";
 import { useSettings } from "../../hooks/useSettings";
 import { commands } from "../../bindings";
 
@@ -186,7 +187,7 @@ const UpdateChecker: React.FC<UpdateCheckerProps> = ({ className = "" }) => {
     <>
       {showPortableUpdateDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-bg border border-border rounded-lg p-6 max-w-md w-full mx-4 space-y-4">
+          <div className="glass-dialog rounded-xl p-6 max-w-md w-full mx-4 space-y-4">
             <h2 className="text-base font-semibold">
               {t("footer.portableUpdateTitle")}
             </h2>
@@ -194,21 +195,21 @@ const UpdateChecker: React.FC<UpdateCheckerProps> = ({ className = "" }) => {
               {t("footer.portableUpdateMessage")}
             </p>
             <div className="flex gap-2 justify-end">
-              <button
-                className="px-3 py-1.5 text-sm rounded border border-border hover:bg-border/50 transition-colors"
+              <Button
+                variant="secondary"
                 onClick={() => setShowPortableUpdateDialog(false)}
               >
                 {t("common.close")}
-              </button>
-              <button
-                className="px-3 py-1.5 text-sm rounded bg-logo-primary text-white hover:bg-logo-primary/80 transition-colors"
+              </Button>
+              <Button
+                variant="primary"
                 onClick={() => {
                   openUrl("https://github.com/cjpais/Handy/releases/latest");
                   setShowPortableUpdateDialog(false);
                 }}
               >
                 {t("footer.portableUpdateButton")}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -220,8 +221,8 @@ const UpdateChecker: React.FC<UpdateCheckerProps> = ({ className = "" }) => {
             disabled={isUpdateDisabled}
             className={`transition-colors disabled:opacity-50 tabular-nums ${
               updateAvailable
-                ? "text-logo-primary hover:text-logo-primary/80 font-medium"
-                : "text-text/60 hover:text-text/80"
+                ? "text-accent hover:text-accent/80 font-medium"
+                : "text-accent/90 hover:text-accent"
             }`}
           >
             {getUpdateStatusText()}

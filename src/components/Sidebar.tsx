@@ -1,8 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Cog, FlaskConical, History, Info, Sparkles, Cpu } from "lucide-react";
-import HandyTextLogo from "./icons/HandyTextLogo";
-import HandyHand from "./icons/HandyHand";
+import {
+  AudioLines,
+  Cog,
+  FlaskConical,
+  Hand,
+  History,
+  Info,
+  Sparkles,
+  Cpu,
+} from "lucide-react";
 import { useSettings } from "../hooks/useSettings";
 import {
   GeneralSettings,
@@ -34,7 +41,7 @@ interface SectionConfig {
 export const SECTIONS_CONFIG = {
   general: {
     labelKey: "sidebar.general",
-    icon: HandyHand,
+    icon: Hand,
     component: GeneralSettings,
     enabled: () => true,
   },
@@ -93,9 +100,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
     .map(([id, config]) => ({ id: id as SidebarSection, ...config }));
 
   return (
-    <div className="flex flex-col w-40 h-full border-e border-mid-gray/20 items-center px-2">
-      <HandyTextLogo width={120} className="m-4" />
-      <div className="flex flex-col w-full items-center gap-1 pt-2 border-t border-mid-gray/20">
+    <div className="flex flex-col w-56 h-full border-e border-hairline bg-chrome px-3">
+      <div className="flex items-center gap-2.5 px-3 pt-6 pb-5">
+        <AudioLines className="w-5 h-5 text-accent" strokeWidth={2.5} />
+        {/* eslint-disable-next-line i18next/no-literal-string */}
+        <span className="text-lg font-bold tracking-tight">Jarvis</span>
+      </div>
+      <div className="flex flex-col w-full gap-1">
         {availableSections.map((section) => {
           const Icon = section.icon;
           const isActive = activeSection === section.id;
@@ -103,16 +114,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
           return (
             <div
               key={section.id}
-              className={`flex gap-2 items-center p-2 w-full rounded-lg cursor-pointer transition-colors ${
+              className={`flex gap-2.5 items-center px-3 py-2 w-full rounded-lg cursor-pointer transition-colors duration-150 ${
                 isActive
-                  ? "bg-logo-primary/80"
-                  : "hover:bg-mid-gray/20 hover:opacity-100 opacity-85"
+                  ? "bg-accent/12 text-accent"
+                  : "text-text/70 hover:bg-fill-hover hover:text-text"
               }`}
               onClick={() => onSectionChange(section.id)}
             >
-              <Icon width={24} height={24} className="shrink-0" />
+              <Icon width={17} height={17} className="shrink-0" />
               <p
-                className="text-sm font-medium truncate"
+                className="text-[13px] font-medium truncate"
                 title={t(section.labelKey)}
               >
                 {t(section.labelKey)}

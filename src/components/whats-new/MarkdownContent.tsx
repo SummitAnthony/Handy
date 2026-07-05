@@ -110,7 +110,7 @@ const components: Components = {
         checked={Boolean(checked)}
         disabled
         readOnly
-        className="me-2 h-3.5 w-3.5 align-middle accent-logo-primary"
+        className="me-2 h-3.5 w-3.5 align-middle accent-accent"
       />
     );
   },
@@ -123,7 +123,7 @@ const components: Components = {
     <del className="text-text/60 line-through">{children}</del>
   ),
   br: () => <br />,
-  hr: () => <hr className="border-mid-gray/20" />,
+  hr: () => <hr className="border-hairline" />,
   img: ({ alt, src }) => {
     if (!src || !isSafeImageSrc(src)) return null;
 
@@ -148,7 +148,7 @@ const components: Components = {
     <thead className="border-b border-mid-gray/30 text-text">{children}</thead>
   ),
   tbody: ({ children }) => (
-    <tbody className="divide-y divide-mid-gray/20">{children}</tbody>
+    <tbody className="divide-y divide-hairline">{children}</tbody>
   ),
   tr: ({ children }) => <tr>{children}</tr>,
   th: ({ children }) => (
@@ -156,7 +156,7 @@ const components: Components = {
   ),
   td: ({ children }) => <td className="px-2 py-1.5 align-top">{children}</td>,
   blockquote: ({ children }) => (
-    <blockquote className="border-s-2 border-logo-primary/50 ps-3 text-sm leading-relaxed text-text/70">
+    <blockquote className="border-s-2 border-accent/50 ps-3 text-sm leading-relaxed text-text/70">
       {children}
     </blockquote>
   ),
@@ -195,7 +195,7 @@ const components: Components = {
           event.preventDefault();
           void openSafeUrl(href);
         }}
-        className="text-logo-primary underline decoration-logo-primary/40 underline-offset-2 hover:decoration-logo-primary"
+        className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
       >
         {children}
       </a>

@@ -217,7 +217,7 @@ export const ModelsSettings: React.FC = () => {
     return (
       <div className="max-w-3xl w-full mx-auto">
         <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-2 border-logo-primary border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
         </div>
       </div>
     );
@@ -242,7 +242,7 @@ export const ModelsSettings: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t("settings.models.searchPlaceholder")}
-          className="w-full pl-9 pr-3 py-2 text-sm bg-mid-gray/10 border border-mid-gray/40 rounded-lg focus:outline-none focus:ring-1 focus:ring-logo-primary placeholder:text-text/40"
+          className="w-full pl-9 pr-3 py-2 text-sm bg-fill border border-hairline rounded-lg focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/20 placeholder:text-mid-gray/70"
         />
       </div>
 
@@ -261,7 +261,7 @@ export const ModelsSettings: React.FC = () => {
                   onClick={() => rescanLocalModels()}
                   disabled={isRescanning}
                   title={t("settings.models.rescan.tooltip")}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-mid-gray/10 text-text/60 hover:bg-mid-gray/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-fill text-text/60 hover:text-text hover:bg-fill-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <RefreshCw
                     className={`w-3.5 h-3.5 ${isRescanning ? "animate-spin" : ""}`}
@@ -277,8 +277,8 @@ export const ModelsSettings: React.FC = () => {
                     }
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                       languageFilter !== "all"
-                        ? "bg-logo-primary/20 text-logo-primary"
-                        : "bg-mid-gray/10 text-text/60 hover:bg-mid-gray/20"
+                        ? "bg-accent/15 text-accent"
+                        : "bg-fill text-text/60 hover:text-text hover:bg-fill-hover"
                     }`}
                   >
                     <Globe className="w-3.5 h-3.5" />
@@ -293,8 +293,8 @@ export const ModelsSettings: React.FC = () => {
                   </button>
 
                   {languageDropdownOpen && (
-                    <div className="absolute top-full right-0 mt-1 w-56 bg-background border border-mid-gray/80 rounded-lg shadow-lg z-50 overflow-hidden">
-                      <div className="p-2 border-b border-mid-gray/40">
+                    <div className="absolute top-full right-0 mt-1.5 w-56 glass-menu rounded-xl z-50 overflow-hidden">
+                      <div className="p-2 border-b border-hairline">
                         <input
                           ref={languageSearchInputRef}
                           type="text"
@@ -316,7 +316,7 @@ export const ModelsSettings: React.FC = () => {
                           placeholder={t(
                             "settings.general.language.searchPlaceholder",
                           )}
-                          className="w-full px-2 py-1 text-sm bg-mid-gray/10 border border-mid-gray/40 rounded-md focus:outline-none focus:ring-1 focus:ring-logo-primary"
+                          className="w-full px-2 py-1 text-sm bg-fill border border-hairline rounded-md focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/20 placeholder:text-mid-gray/70"
                         />
                       </div>
                       <div className="max-h-48 overflow-y-auto">
@@ -329,8 +329,8 @@ export const ModelsSettings: React.FC = () => {
                           }}
                           className={`w-full px-3 py-1.5 text-sm text-left transition-colors ${
                             languageFilter === "all"
-                              ? "bg-logo-primary/20 text-logo-primary font-semibold"
-                              : "hover:bg-mid-gray/10"
+                              ? "bg-accent/15 text-accent font-medium"
+                              : "hover:bg-fill-hover"
                           }`}
                         >
                           {t("settings.models.filters.allLanguages")}
@@ -346,8 +346,8 @@ export const ModelsSettings: React.FC = () => {
                             }}
                             className={`w-full px-3 py-1.5 text-sm text-left transition-colors ${
                               languageFilter === lang.value
-                                ? "bg-logo-primary/20 text-logo-primary font-semibold"
-                                : "hover:bg-mid-gray/10"
+                                ? "bg-accent/15 text-accent font-medium"
+                                : "hover:bg-fill-hover"
                             }`}
                           >
                             {lang.label}

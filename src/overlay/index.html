@@ -3,6 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <title>Recording Overlay</title>
+    <!-- Stamp the theme before first paint; src/lib/theme.ts keeps it current.
+         The storage key must match STORAGE_KEY in theme.ts. -->
+    <script>
+      const pref = localStorage.getItem("app-theme");
+      document.documentElement.dataset.theme =
+        pref === "light" || pref === "dark"
+          ? pref
+          : matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    </script>
     <style>
       html,
       body {

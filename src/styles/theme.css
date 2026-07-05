@@ -1,20 +1,77 @@
-/* Handy Colors */
+/* Jarvis Colors — Linear-inspired dark UI with indigo accent.
+   Token names are shared with the overlay window (RecordingOverlay.css),
+   so existing names must stay; new tokens are additive.
 
-:root {
-  --color-text: #0f0f0f;
-  --color-background: #fbfbfb;
-  --color-background-ui: #da5893;
-  --color-logo-primary: #faa2ca;
-  --color-logo-stroke: #382731;
+   Theme resolution: `data-theme="light|dark"` is stamped on <html> before
+   first paint by an inline script in each HTML entry (index.html,
+   src/overlay/index.html) and kept current by src/lib/theme.ts. All
+   theme-conditional CSS — including Tailwind's `dark:` variant — keys off
+   that attribute; the base `:root` block doubles as the pre-attribute
+   fallback. */
+
+:root,
+:root[data-theme="light"] {
+  --color-text: #18181b;
+  --color-background: #f6f6f8;
+  --color-logo-primary: #818cf8;
+  --color-logo-stroke: #2f3060;
   --color-text-stroke: #f6f6f6;
-  --color-mid-gray: #808080;
+  --color-mid-gray: #85858b;
+
+  /* Accent (indigo) */
+  --color-accent: #5457e6;
+  /* Legacy alias, resolved at use time so it always follows the accent */
+  --color-background-ui: var(--color-accent);
+
+  /* Glass surfaces — alpha baked in */
+  --color-surface: rgba(255, 255, 255, 0.66);
+  --color-surface-raised: rgba(252, 252, 253, 0.9);
+
+  /* Window-chrome bars (sidebar, footer) */
+  --color-chrome: rgba(255, 255, 255, 0.4);
+
+  /* Neutral control fills — derived from the text color so they flip with
+     the theme on their own (dark text ⇒ black tint, light text ⇒ white tint) */
+  --color-fill: color-mix(in srgb, var(--color-text) 5%, transparent);
+  --color-fill-hover: color-mix(in srgb, var(--color-text) 8%, transparent);
+
+  /* Hairline strokes */
+  --color-hairline: rgba(9, 9, 11, 0.08);
+  --color-hairline-strong: rgba(9, 9, 11, 0.16);
+
+  /* Elevation */
+  --shadow-card: 0 1px 1px rgb(0 0 0 / 0.02), 0 8px 24px -12px rgb(0 0 0 / 0.1);
+  --shadow-menu:
+    0 2px 8px rgb(0 0 0 / 0.06), 0 12px 32px -8px rgb(0 0 0 / 0.18);
+  --shadow-dialog:
+    0 4px 16px rgb(0 0 0 / 0.08), 0 24px 60px -12px rgb(0 0 0 / 0.28);
+
+  /* Ambient tints behind the glass */
+  --ambient-a: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  --ambient-b: color-mix(in srgb, var(--color-accent) 4%, transparent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #fbfbfb;
-    --color-background: #2c2b29;
-    --color-logo-primary: #f28cbb;
-    --color-logo-stroke: #fad1ed;
-  }
+:root[data-theme="dark"] {
+  --color-text: #ececf0;
+  --color-background: #141416;
+  --color-logo-primary: #8b90f7;
+  --color-logo-stroke: #c7c9fb;
+
+  --color-accent: #6e72f3;
+
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface-raised: rgba(36, 36, 40, 0.92);
+
+  --color-chrome: rgba(255, 255, 255, 0.03);
+
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.16);
+
+  --shadow-card: 0 1px 1px rgb(0 0 0 / 0.1), 0 8px 24px -12px rgb(0 0 0 / 0.4);
+  --shadow-menu: 0 2px 8px rgb(0 0 0 / 0.3), 0 12px 32px -8px rgb(0 0 0 / 0.55);
+  --shadow-dialog:
+    0 4px 16px rgb(0 0 0 / 0.35), 0 24px 60px -12px rgb(0 0 0 / 0.65);
+
+  --ambient-a: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  --ambient-b: color-mix(in srgb, var(--color-accent) 3%, transparent);
 }
